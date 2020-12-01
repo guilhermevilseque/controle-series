@@ -26,25 +26,25 @@
             <span id="nome-serie-{{ $serie->id }}">{{ $serie->nome }}</span>
 
             <div class="input-group w-50" hidden id="input-nome-serie-{{ $serie->id }}">
-                <input type="text" class="form-control" value="{{ $serie->nome }}">
+                <input type="text" name="nomeNovoSerie{{ $serie->id }}" class="form-control" value="{{ $serie->nome }}">
                 <div class="input-group-append">
-                    <button class="btn btn-primary btn-sm" onclick="editarSerie({{ $serie->id }})">
+                    <button class="btn btn-primary btn-sm" name="atualizarNome{{ $serie->id }}" onclick="editarSerie({{ $serie->id }})">
                         <i class="material-icons md-24 mt-1">autorenew</i>
                     </button>
                     @csrf
                 </div>
             </div>
             <span class="d-flex">
-                <button class="btn btn-primary btn-sm" onclick="alterarNomeSerie({{ $serie->id }})">
+                <button class="btn btn-primary btn-sm" name="editarNome{{ $serie->id }}" onclick="alterarNomeSerie({{ $serie->id }})">
                      <i class="material-icons mt-1">edit</i>
                 </button>
                 <a href="/series/{{ $serie->id }}/temporadas" class="btn btn-success btn-sm">
                     <i class="material-icons md-36 mt-1">library_books</i>
                 </a>
-                <form method="post" action="/series/remover/{{ $serie->id }}"
+                <form method="post" name="formDeletar" action="/series/remover/{{ $serie->id }}"
                       onsubmit="return confirm('Deseja confirmar a exclusão de {{ addslashes($serie->nome) }}?')">
                     @csrf
-                    <button class="btn btn-danger btn-sm">
+                    <button class="btn btn-danger btn-sm" name="deletarSerie">
                         <i class="material-icons md-36 mt-1">delete_forever</i>
                     </button>
                 </form>
